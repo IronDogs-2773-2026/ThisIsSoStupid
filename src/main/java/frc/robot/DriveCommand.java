@@ -8,9 +8,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class DriveCommand extends Command {
-  /** Creates a new DriveCommand. */
-  public DriveCommand() {
-    // Use addRequirements() here to declare subsystem dependencies.
+  private final DriveSubsystem driveSub;
+  public DriveCommand(DriveSubsystem driveSub) {
+    this.driveSub = driveSub;
+    addRequirements(driveSub);
   }
 
   // Called when the command is initially scheduled.
@@ -19,7 +20,9 @@ public class DriveCommand extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    driveSub.getDrive().curvatureDrive(-Constants.controller.getLeftY(), Constants.controller.getRightX(), true);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
