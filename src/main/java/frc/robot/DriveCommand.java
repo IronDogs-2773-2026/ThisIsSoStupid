@@ -21,7 +21,7 @@ public class DriveCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    driveSub.getDrive().curvatureDrive(-Constants.controller.getLeftY(), Constants.controller.getRightX(), true);
+    driveSub.getDrive().curvatureDrive(Constants.controller.getRightX(), -Constants.controller.getLeftY(), true);
   }
 
   // Called once the command ends or is interrupted.
