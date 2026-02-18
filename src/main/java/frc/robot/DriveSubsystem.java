@@ -39,6 +39,10 @@ public class DriveSubsystem extends SubsystemBase {
     return drive;
   }
 
+  public static DriveSubsystem getDriveSubsystem() {
+    return new DriveSubsystem();
+  }
+
   public Encoder getLeftEncoder() {
     return leftEncoder;
   }

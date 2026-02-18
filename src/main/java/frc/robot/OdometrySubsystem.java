@@ -82,5 +82,6 @@ public class OdometrySubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    update();
   }
 }
