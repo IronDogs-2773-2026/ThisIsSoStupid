@@ -34,12 +34,14 @@ public class LauncherSubsystem extends SubsystemBase {
     indexerMotor = new PWMSparkMax(Constants.LauncherConstants.kIndexerMotor);
     shooterPidController = shooterMotor.getClosedLoopController();
     shooterConfig = new SparkMaxConfig();
+    // shooterConfig.smartCurrentLimit(35);
     shooterConfig.closedLoop
         .p(Constants.LauncherConstants.kP)
-        .i(0.0001)
-        .d(0.0)
-        .velocityFF(Constants.LauncherConstants.kFF);
-    shooterMotor.configure(shooterConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        .i(Constants.LauncherConstants.kI)
+        .d(Constants.LauncherConstants.kD)
+        .velocityFF(Constants.LauncherConstants.kFF)
+        .outputRange(-0.7, 0.7);
+    shooterMotor.configure(shooterConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
   }
 
   public void setIntakeSpeed(double speed) {
@@ -87,8 +89,8 @@ public class LauncherSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Flywheel Speed", intakeMotor.get());
-    SmartDashboard.putNumber("Shooter RPM", shooterMotor.getEncoder().getVelocity());
+    SmartDashboard.putNumber("Set Speed", shooterMotor.get());
+    SmartDashboard.putNumber("True RPM", shooterMotor.getEncoder().getVelocity());
     // SmartDashboard.putNumber("Shooter P", p);
     // SmartDashboard.putNumber("Shooter FF", ff);
   }

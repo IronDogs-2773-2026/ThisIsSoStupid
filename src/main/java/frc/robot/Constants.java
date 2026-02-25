@@ -19,13 +19,16 @@ public class Constants {
     }
 
     public static final int kLiftMotorPort = 29;
+    public static final double kBigNumber = 999999;
 
     public class LauncherConstants {
         public static final int kIntakeMotor = 14;        
         public static final int kIndexerMotor = 7;
         public static final int kFlywheelMotor = 32;
-        public static final double kP = 0.0003;
-        public static final double kFF = 0.0004;
+        public static final double kP = 0.00006;
+        public static final double kI = 0.000000038;
+        public static final double kD = 0.00;      
+        public static final double kFF = 0.000176 * 10.5;
     }
 
     public static final XboxController controller = new XboxController(0);
