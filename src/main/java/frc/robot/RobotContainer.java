@@ -9,9 +9,13 @@ import edu.wpi.first.wpilibj2.command.Commands;
 
 public class RobotContainer {
   Command m_teleopCommand;
+  LauncherSubsystem m_launcherSubsystem;
+  DriveSubsystem m_driveSubsystem;
   public RobotContainer() {
+    m_launcherSubsystem = new LauncherSubsystem();
+    m_driveSubsystem = new DriveSubsystem();
     configureBindings();
-    m_teleopCommand = new DriveCommand(DriveSubsystem.getDriveSubsystem());
+    m_teleopCommand = new DriveCommand(m_driveSubsystem, m_launcherSubsystem);
   }
 
   private void configureBindings() {}

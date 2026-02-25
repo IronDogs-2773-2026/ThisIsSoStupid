@@ -14,17 +14,18 @@ public class Constants {
         public static final int kLeftMotor2Port = 1;
         public static final int kRightMotor1Port = 2;
         public static final int kRightMotor2Port = 3;
-
         public static final double kTrackwidthMeters = 0.69;
+        public static final double kSensitivity = 0.6;
     }
 
     public static final int kLiftMotorPort = 29;
 
     public class LauncherConstants {
-        public static final int kFlywheelMotorPort1 = 6;        
-        public static final int kFlywheelMotorPort2 = 7;
-        public static final int kSlurpyBallsMotorPort = 24;
-
+        public static final int kIntakeMotor = 14;        
+        public static final int kIndexerMotor = 7;
+        public static final int kFlywheelMotor = 32;
+        public static final double kP = 0.0003;
+        public static final double kFF = 0.0004;
     }
 
     public static final XboxController controller = new XboxController(0);
