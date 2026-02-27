@@ -25,10 +25,10 @@ public class Constants {
         public static final int kIntakeMotor = 14;        
         public static final int kIndexerMotor = 7;
         public static final int kFlywheelMotor = 32;
-        public static final double kP = 0.00006;
-        public static final double kI = 0.000000038;
-        public static final double kD = 0.00;      
-        public static final double kFF = 0.000176 * 10.5;
+        public static final double kP = 0.0018;
+        public static final double kI = 0.0000000138;
+        public static final double kD = 0.00000001;      
+        public static final double kFF = 0.000176 * 2.5;
     }
 
     public static final XboxController controller = new XboxController(0);

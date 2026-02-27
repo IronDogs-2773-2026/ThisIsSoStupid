@@ -29,7 +29,7 @@ public class DriveCommand extends Command {
 
   public void shoot() {
     if (controllerShoot.getLeftTriggerAxis() > 0.5) {
-      launcherSub.setShooterSpeed(2800);
+      launcherSub.setShooterSpeed(2773);
       // launcherSub.setShooterSpeed(filter.calculate(3500));
     } else {
       launcherSub.setShooterSpeed(0);
@@ -53,7 +53,7 @@ public class DriveCommand extends Command {
     }
 
     if (controllerShoot.getAButton()) {
-      launcherSub.setShooterSpeed(2500);
+      launcherSub.setShooterSpeed(1500);
       launcherSub.setIntakeSpeed(-1);
 
     }
@@ -83,6 +83,7 @@ public class DriveCommand extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    launcherSub.stopAll();
   }
 
   // Returns true when the command should end.

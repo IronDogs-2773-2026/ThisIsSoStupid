@@ -4,12 +4,17 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.CvSink;
+import edu.wpi.first.cscore.CvSource;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.math.estimator.DifferentialDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class OdometrySubsystem extends SubsystemBase {
@@ -28,6 +33,8 @@ public class OdometrySubsystem extends SubsystemBase {
         driveSubsystem.getRightEncoder().getDistance(),
         new Pose2d()
     );
+    
+    CameraServer.startAutomaticCapture();
   }
 
   public Pose2d getPose() {
@@ -37,12 +44,13 @@ public class OdometrySubsystem extends SubsystemBase {
   public Rotation2d getRotation() {
     return getPose().getRotation();
   }
-  
+
   public void resetPose(Pose2d pose) {
     gyro.reset();
     driveSubsystem.getLeftEncoder().reset();
     driveSubsystem.getRightEncoder().reset();
-    poseEstimator.resetPosition(gyro.getRotation2d(), driveSubsystem.getLeftEncoder().getDistance(), driveSubsystem.getRightEncoder().getDistance(), pose);
+    poseEstimator.resetPosition(gyro.getRotation2d(), driveSubsystem.getLeftEncoder().getDistance(),
+        driveSubsystem.getRightEncoder().getDistance(), pose);
   }
 
   public double getX() {

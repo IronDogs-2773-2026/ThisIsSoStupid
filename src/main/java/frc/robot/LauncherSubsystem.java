@@ -8,6 +8,7 @@ import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.config.ClosedLoopConfig;
 import com.revrobotics.spark.config.FeedForwardConfig;
 import com.revrobotics.spark.config.SparkBaseConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
@@ -40,8 +41,11 @@ public class LauncherSubsystem extends SubsystemBase {
         .i(Constants.LauncherConstants.kI)
         .d(Constants.LauncherConstants.kD)
         .velocityFF(Constants.LauncherConstants.kFF)
-        .outputRange(-0.7, 0.7);
-    shooterMotor.configure(shooterConfig, ResetMode.kNoResetSafeParameters, PersistMode.kPersistParameters);
+        .allowedClosedLoopError(100, shooterPidController.getSelectedSlot())
+        .outputRange(-0.6, 0.75)
+        // .dFilter(1)
+        ;
+    shooterMotor.configure(shooterConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
   public void setIntakeSpeed(double speed) {
@@ -58,6 +62,11 @@ public class LauncherSubsystem extends SubsystemBase {
 
   public void setIndexSpeed(double speed) {
     indexerMotor.set(speed);
+  }
+
+  public void stopAll() {
+    shooterMotor.stopMotor();
+    shooterMotor.configure(new SparkMaxConfig(), ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
   }
 
   double p = Constants.LauncherConstants.kP;
@@ -91,6 +100,7 @@ public class LauncherSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Set Speed", shooterMotor.get());
     SmartDashboard.putNumber("True RPM", shooterMotor.getEncoder().getVelocity());
+    // SmartDashboard.putNumber();
     // SmartDashboard.putNumber("Shooter P", p);
     // SmartDashboard.putNumber("Shooter FF", ff);
   }
