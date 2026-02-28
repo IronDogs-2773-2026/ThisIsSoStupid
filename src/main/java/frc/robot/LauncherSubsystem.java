@@ -13,7 +13,6 @@ import com.revrobotics.spark.config.FeedForwardConfig;
 import com.revrobotics.spark.config.SparkBaseConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
-import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -26,8 +25,7 @@ public class LauncherSubsystem extends SubsystemBase {
   private final SparkMax intakeMotor;
   private final SparkMax shooterMotor;
   private final PWMSparkMax indexerMotor;
-  private final PIDController pidController;
-  private double shooterVoltage;
+  // private final PIDController pidController;
 
   /** Creates a new LauncherSubsystem. */
   public LauncherSubsystem() {
@@ -35,10 +33,8 @@ public class LauncherSubsystem extends SubsystemBase {
     shooterMotor = new SparkMax(Constants.LauncherConstants.kFlywheelMotor, SparkMax.MotorType.kBrushless);
     indexerMotor = new PWMSparkMax(Constants.LauncherConstants.kIndexerMotor);
 
-    pidController = new PIDController(Constants.LauncherConstants.nkP, Constants.LauncherConstants.nkI, Constants.LauncherConstants.nkD);
-    pidController.setTolerance(10);
-    shooterVoltage = 0;
-
+    // pidController = new PIDController(Constants.LauncherConstants.nkP, Constants.LauncherConstants.nkI, Constants.LauncherConstants.nkD);
+    // pidController.setTolerance(100);
   }
 
   public void setIntakeSpeed(double speed) {
@@ -49,13 +45,10 @@ public class LauncherSubsystem extends SubsystemBase {
     shooterMotor.set(speed);
   }
 
-
-  public void setShooterPid(double RPM) {
-    double output = pidController.calculate(shooterMotor.getEncoder().getVelocity(), RPM);
-    shooterVoltage = MathUtil.clamp(output + shooterVoltage, -0.5, 0.7);
-    
-    shooterMotor.set(shooterVoltage);
-  }
+  // public void setShooterPid(double RPM) {
+  //   double output = pidController.calculate(shooterMotor.getEncoder().getVelocity(), RPM);
+  //   shooterMotor.set(output);
+  // }
 
   public void setIndexSpeed(double speed) {
     indexerMotor.set(speed);

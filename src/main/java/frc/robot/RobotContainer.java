@@ -11,13 +11,11 @@ public class RobotContainer {
   Command m_teleopCommand;
   LauncherSubsystem m_launcherSubsystem;
   DriveSubsystem m_driveSubsystem;
-  OdometrySubsystem m_odomSub;
   public RobotContainer() {
-    m_driveSubsystem = Constants.kDriveSubsystem;
-    m_launcherSubsystem = Constants.kLauncherSubsystem;
-    m_odomSub = Constants.kOdometrySubsystem;
+    m_launcherSubsystem = new LauncherSubsystem();
+    m_driveSubsystem = new DriveSubsystem();
     configureBindings();
-    m_teleopCommand = new DriveCommand(m_driveSubsystem, m_launcherSubsystem, m_odomSub);
+    m_teleopCommand = new DriveCommand(m_driveSubsystem, m_launcherSubsystem);
   }
 
   private void configureBindings() {}
