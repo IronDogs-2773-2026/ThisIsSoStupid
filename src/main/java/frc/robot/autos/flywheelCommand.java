@@ -7,9 +7,9 @@ package frc.robot.autos;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class ExampleAuto extends Command {
-  /** Creates a new ExampleAuto. */
-  public ExampleAuto() {
+public class flywheelCommand extends Command {
+  /** Creates a new flywheelCommand. */
+  public flywheelCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
