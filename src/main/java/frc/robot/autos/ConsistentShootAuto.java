@@ -17,19 +17,17 @@ import frc.robot.OdometrySubsystem;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ConsistentShootAuto extends SequentialCommandGroup {
   /** Creates a new ConsistentShootAuto. */
-  private final DriveSubsystem driveSub;
-  private final OdometrySubsystem odomSub;
-  private final LauncherSubsystem launcherSub;
+  private final DriveSubsystem driveSub = Constants.kDriveSubsystem;
+  private final OdometrySubsystem odomSub = Constants.kOdometrySubsystem;
+  private final LauncherSubsystem launcherSub = Constants.kLauncherSubsystem;
   public ConsistentShootAuto() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-      driveSub = Constants.kDriveSubsystem;
-      odomSub = Constants.kOdometrySubsystem;
-      launcherSub = Constants.kLauncherSubsystem;
+
     addCommands(
       new DriveBack(driveSub, odomSub),
       new WaitCommand(2),
-      new flywheelCommand(launcherSub),
+      new FlywheelCommand(launcherSub),
       new WaitCommand(2),
       new ShootCommand(launcherSub)
 

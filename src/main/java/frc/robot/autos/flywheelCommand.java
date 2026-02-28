@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.LauncherSubsystem;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class flywheelCommand extends Command {
+public class FlywheelCommand extends Command {
   /** Creates a new flywheelCommand. */
   private final LauncherSubsystem launcherSub;
-  public flywheelCommand(LauncherSubsystem launcherSub) {
+  public FlywheelCommand(LauncherSubsystem launcherSub) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.launcherSub = launcherSub;
     addRequirements(launcherSub);

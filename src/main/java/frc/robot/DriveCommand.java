@@ -61,11 +61,10 @@ public class DriveCommand extends Command {
     } else {
       launcherSub.setIndexSpeed(0);
       launcherSub.setIntakeSpeed(0);
+      launcherSub.setShooterDirect(0);
     }
-
     if (controllerShoot.getAButton()) {
-      launcherSub.setShooterDirect(0.3);
-      launcherSub.setIntakeSpeed(-1);
+      launcherSub.setShooterPid(2000);
     }
   }
 
