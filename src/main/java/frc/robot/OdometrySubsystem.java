@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import org.opencv.photo.Photo;
+import org.photonvision.PhotonCamera;
+
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
@@ -22,6 +25,7 @@ public class OdometrySubsystem extends SubsystemBase {
   private final DriveSubsystem driveSubsystem;
   private final DifferentialDrivePoseEstimator poseEstimator;
   private final DifferentialDriveKinematics kinematics;
+  private final PhotonCamera camera;
 
   public OdometrySubsystem(DriveSubsystem driveSubsystem) {
     this.driveSubsystem = driveSubsystem;
@@ -34,7 +38,8 @@ public class OdometrySubsystem extends SubsystemBase {
         new Pose2d()
     );
     
-    CameraServer.startAutomaticCapture();
+    this.camera = new PhotonCamera("Camera");
+
   }
 
   public Pose2d getPose() {

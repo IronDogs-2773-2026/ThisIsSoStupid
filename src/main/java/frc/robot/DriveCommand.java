@@ -25,15 +25,18 @@ public class DriveCommand extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    launcherSub.stopAll();
   }
 
   public void shoot() {
     if (controllerShoot.getLeftTriggerAxis() > 0.5) {
-      launcherSub.setShooterSpeed(2773);
-      // launcherSub.setShooterSpeed(filter.calculate(3500));
+      // launcherSub.setShooterSpeed(2773);
+      launcherSub.setShooterBetter(2700);
+      // launcherSub.setFlywheelDirect(0.75);
     } else {
-      launcherSub.setShooterSpeed(0);
-      // launcherSub.setShooterSpeed(filter.calculate(0));
+      // launcherSub.setShooterSpeed(0);
+      launcherSub.setShooterBetter(0);
+      // launcherSub.setFlywheelDirect(0);
     }
 
     if (controllerShoot.getRightTriggerAxis() > 0.5) {
@@ -53,21 +56,9 @@ public class DriveCommand extends Command {
     }
 
     if (controllerShoot.getAButton()) {
-      launcherSub.setShooterSpeed(1500);
+      // launcherSub.setShooterBetter(1500);
       launcherSub.setIntakeSpeed(-1);
 
-    }
-  }
-
-  public void tunePID() {
-    if (controllerShoot.getPOV() == 0) {
-      launcherSub.increaseP();
-    } else if (controllerShoot.getPOV() == 180) {
-      launcherSub.decreaseP();
-    } else if (controllerShoot.getPOV() == 90) {
-      launcherSub.increaseFF();
-    } else if (controllerShoot.getPOV() == 270) {
-      launcherSub.decreaseFF();
     }
   }
 
