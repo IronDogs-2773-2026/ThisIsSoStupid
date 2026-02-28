@@ -28,37 +28,37 @@ public class DriveCommand extends Command {
     launcherSub.stopAll();
   }
 
+  // not using pid for this competition, we need to safeguard the motors burning out - maybe only 60% power
   public void shoot() {
     if (controllerShoot.getLeftTriggerAxis() > 0.5) {
       // launcherSub.setShooterSpeed(2773);
-      launcherSub.setShooterBetter(2700);
-      // launcherSub.setFlywheelDirect(0.75);
+      // launcherSub.setShooterBetter(2700);
+      launcherSub.setShooterDirect(0.6);
     } else {
       // launcherSub.setShooterSpeed(0);
-      launcherSub.setShooterBetter(0);
-      // launcherSub.setFlywheelDirect(0);
+      // launcherSub.setShooterBetter(0);
+      launcherSub.setShooterDirect(0);
     }
 
     if (controllerShoot.getRightTriggerAxis() > 0.5) {
       launcherSub.setIndexSpeed(-1);
       launcherSub.setIntakeSpeed(-1);
     } else if (controllerShoot.getRightBumperButton() && controllerShoot.getLeftTriggerAxis() < 0.5) {
-      launcherSub.setFlywheelDirect(-0.5);
+      launcherSub.setShooterDirect(-0.5);
       launcherSub.setIndexSpeed(1);
       launcherSub.setIntakeSpeed(-1);
     } else if (controllerShoot.getLeftBumperButton() && controllerShoot.getLeftTriggerAxis() < 0.5) {
       launcherSub.setIntakeSpeed(1);
       launcherSub.setIndexSpeed(-1);
-      launcherSub.setFlywheelDirect(-0.5);
+      launcherSub.setShooterDirect(-0.5);
     } else {
       launcherSub.setIndexSpeed(0);
       launcherSub.setIntakeSpeed(0);
     }
 
     if (controllerShoot.getAButton()) {
-      // launcherSub.setShooterBetter(1500);
+      launcherSub.setShooterDirect(0.3);
       launcherSub.setIntakeSpeed(-1);
-
     }
   }
 
