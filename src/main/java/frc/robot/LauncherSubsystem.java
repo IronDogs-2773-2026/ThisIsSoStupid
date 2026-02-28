@@ -66,4 +66,9 @@ public class LauncherSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("True RPM", shooterMotor.getEncoder().getVelocity());
     SmartDashboard.putNumber("Shooter Velocity", shooterMotor.getEncoder().getVelocity());
   }
+
+  public void setShooterPid(int i) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'setShooterPid'");
+  }
 }
