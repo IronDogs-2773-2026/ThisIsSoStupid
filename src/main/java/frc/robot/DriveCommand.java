@@ -32,12 +32,15 @@ public class DriveCommand extends Command {
   public void shoot() {
     if (controllerShoot.getLeftTriggerAxis() > 0.5) {
       // launcherSub.setShooterSpeed(2773);
-      // launcherSub.setShooterBetter(2700);
-      launcherSub.setShooterDirect(0.6);
+      launcherSub.setShooterPid(5500);
+      // launcherSub.setShooterDirect(0.6);
+    } else if (controllerShoot.getAButton() && controllerShoot.getLeftTriggerAxis() <= 0.5) {
+      // launcherSub.setShooterDirect(0.45);
+      launcherSub.setShooterPid(4500);
     } else {
       // launcherSub.setShooterSpeed(0);
-      // launcherSub.setShooterBetter(0);
-      launcherSub.setShooterDirect(0);
+      launcherSub.setShooterPid(0);
+      // launcherSub.setShooterDirect(0);
     }
 
     if (controllerShoot.getRightTriggerAxis() > 0.5) {
@@ -45,28 +48,25 @@ public class DriveCommand extends Command {
       launcherSub.setIntakeSpeed(-1);
     } else if (controllerShoot.getRightBumperButton() && controllerShoot.getLeftTriggerAxis() < 0.5) {
       launcherSub.setShooterDirect(-0.5);
-      launcherSub.setIndexSpeed(1);
+      launcherSub.setIndexSpeed(0.5);
       launcherSub.setIntakeSpeed(-1);
     } else if (controllerShoot.getLeftBumperButton() && controllerShoot.getLeftTriggerAxis() < 0.5) {
       launcherSub.setIntakeSpeed(1);
-      launcherSub.setIndexSpeed(-1);
+      launcherSub.setIndexSpeed(-0.5);
       launcherSub.setShooterDirect(-0.5);
     } else {
       launcherSub.setIndexSpeed(0);
       launcherSub.setIntakeSpeed(0);
     }
 
-    if (controllerShoot.getAButton()) {
-      launcherSub.setShooterDirect(0.3);
-      launcherSub.setIntakeSpeed(-1);
-    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    double multiplier = (controllerDrive.getRightTriggerAxis() > 0.5) ? 1 : Constants.DriveConstants.kSensitivity;
     driveSub.getDrive().curvatureDrive(controllerDrive.getRightX() * Constants.DriveConstants.kSensitivity,
-        -controllerDrive.getLeftY() * Constants.DriveConstants.kSensitivity, true);
+        -controllerDrive.getLeftY() * multiplier, true);
     shoot();
     // tunePID();
   }

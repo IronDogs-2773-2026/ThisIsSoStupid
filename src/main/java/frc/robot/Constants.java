@@ -21,17 +21,21 @@ public class Constants {
     public static final int kLiftMotorPort = 29;
     public static final double kBigNumber = 999999;
 
+    public static final DriveSubsystem kDriveSubsystem = new DriveSubsystem();
+    public static final OdometrySubsystem kOdometrySubsystem = new OdometrySubsystem(kDriveSubsystem);
+    public static final LauncherSubsystem kLauncherSubsystem = new LauncherSubsystem();
     public class LauncherConstants {
         public static final int kIntakeMotor = 14;        
         public static final int kIndexerMotor = 7;
         public static final int kFlywheelMotor = 32;
-        public static final double kP = 0.00185;
-        public static final double kI = 0.0000000138;
-        public static final double kD = 0.00000001;      
-        public static final double kFF = 0.000176 * 2.5;
-        public static final double nkP = 0.00044;
-        public static final double nkI = 0.000238;
-        public static final double nkD = 0.0000001;      
+        // public static final double kP = 0.00185;
+        // public static final double kI = 0.0000000138;
+        // public static final double kD = 0.00000001;      
+        // public static final double kFF = 0.000176 * 2.5;
+
+        public static final double nkP = 0.000014; // 0.00001;
+        public static final double nkI = 0.000000;
+        public static final double nkD = 0.000001; // 0.000002;    
     }
 
     public static final XboxController controller = new XboxController(0);

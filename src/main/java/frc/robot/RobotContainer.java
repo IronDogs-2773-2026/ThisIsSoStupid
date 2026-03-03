@@ -12,8 +12,8 @@ public class RobotContainer {
   LauncherSubsystem m_launcherSubsystem;
   DriveSubsystem m_driveSubsystem;
   public RobotContainer() {
-    m_launcherSubsystem = new LauncherSubsystem();
-    m_driveSubsystem = new DriveSubsystem();
+    m_launcherSubsystem = Constants.kLauncherSubsystem;
+    m_driveSubsystem = Constants.kDriveSubsystem;
     configureBindings();
     m_teleopCommand = new DriveCommand(m_driveSubsystem, m_launcherSubsystem);
   }
