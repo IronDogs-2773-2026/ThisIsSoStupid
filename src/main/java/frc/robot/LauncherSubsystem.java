@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class LauncherSubsystem extends SubsystemBase {
@@ -50,7 +51,7 @@ public class LauncherSubsystem extends SubsystemBase {
 
   public void setShooterPid(double RPM) {
     double output = pidController.calculate(shooterMotor.getEncoder().getVelocity(), RPM);
-    shooterVoltage = MathUtil.clamp(output + shooterVoltage, -0.50, 1.0);
+    shooterVoltage = MathUtil.clamp(output + shooterVoltage, -0.50, 0.9);
     
     shooterMotor.set(shooterVoltage);
   }
@@ -68,7 +69,6 @@ public class LauncherSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Set Speed", shooterMotor.get());
-    SmartDashboard.putNumber("True RPM", shooterMotor.getEncoder().getVelocity());
     SmartDashboard.putNumber("Shooter Velocity", shooterMotor.getEncoder().getVelocity());
     SmartDashboard.putNumber("Temperature", shooterMotor.getMotorTemperature());
     SmartDashboard.putNumber("Voltage", shooterMotor.getAppliedOutput());

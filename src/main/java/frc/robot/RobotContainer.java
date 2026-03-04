@@ -6,9 +6,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import frc.robot.autos.BasicShootAuto;
 
 public class RobotContainer {
   Command m_teleopCommand;
+  Command m_autonomousCommand;
   LauncherSubsystem m_launcherSubsystem;
   DriveSubsystem m_driveSubsystem;
   public RobotContainer() {
@@ -16,6 +18,7 @@ public class RobotContainer {
     m_driveSubsystem = Constants.kDriveSubsystem;
     configureBindings();
     m_teleopCommand = new DriveCommand(m_driveSubsystem, m_launcherSubsystem);
+    m_autonomousCommand = new BasicShootAuto(m_launcherSubsystem);
   }
 
   private void configureBindings() {}
@@ -23,7 +26,7 @@ public class RobotContainer {
 
 
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+    return m_autonomousCommand;
   }
 
   public Command getTeleopCommand() {
