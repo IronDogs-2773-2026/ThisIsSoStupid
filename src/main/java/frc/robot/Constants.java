@@ -15,7 +15,7 @@ public class Constants {
         public static final int kRightMotor1Port = 2;
         public static final int kRightMotor2Port = 3;
         public static final double kTrackwidthMeters = 0.69;
-        public static final double kSensitivity = 0.6;
+        public static final double kSensitivity = 0.7;
     }
 
     public static final int kLiftMotorPort = 29;

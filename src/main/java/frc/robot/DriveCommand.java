@@ -65,7 +65,7 @@ public class DriveCommand extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double multiplier = (controllerDrive.getRightTriggerAxis() > 0.5) ? 1 : Constants.DriveConstants.kSensitivity;
+    double multiplier = (controllerDrive.getRightTriggerAxis() > 0.5) ? Constants.DriveConstants.kSensitivity : 1;
     driveSub.getDrive().curvatureDrive(controllerDrive.getRightX() * Constants.DriveConstants.kSensitivity,
         -controllerDrive.getLeftY() * multiplier, true);
     shoot();
