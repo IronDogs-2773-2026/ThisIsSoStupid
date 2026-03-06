@@ -44,16 +44,16 @@ public class DriveCommand extends Command {
     }
 
     if (controllerShoot.getRightTriggerAxis() > 0.5) {
-      launcherSub.setIndexSpeed(-0.5);
+      launcherSub.setIndexSpeed(-0.77);
       launcherSub.setIntakeSpeed(-0.5);
     } else if (controllerShoot.getRightBumperButton() && controllerShoot.getLeftTriggerAxis() < 0.5) {
-      launcherSub.setShooterPid(-500);
-      launcherSub.setIndexSpeed(0.5);
-      launcherSub.setIntakeSpeed(-0.5);
+      launcherSub.setShooterPid(-300);
+      launcherSub.setIndexSpeed(0.9);
+      launcherSub.setIntakeSpeed(-0.85);
     } else if (controllerShoot.getLeftBumperButton() && controllerShoot.getLeftTriggerAxis() < 0.5) {
-      launcherSub.setIntakeSpeed(0.5);
-      launcherSub.setIndexSpeed(-0.5);
-      launcherSub.setShooterPid(-500);
+      launcherSub.setIntakeSpeed(0.6);
+      launcherSub.setIndexSpeed(-0.6);
+      launcherSub.setShooterPid(-400);
 
     } else {
       launcherSub.setIndexSpeed(0);

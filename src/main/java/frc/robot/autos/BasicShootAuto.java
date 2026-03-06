@@ -21,13 +21,13 @@ public class BasicShootAuto extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new RunCommand(() -> launcherSub.setShooterPid(5500)).withTimeout(3),
-      new WaitCommand(3),
+      new RunCommand(() -> launcherSub.setShooterPid(4500)).withTimeout(1),
+      new WaitCommand(1),
       new RunCommand(() -> {
-        launcherSub.setIndexSpeed(-0.5);
-        launcherSub.setIntakeSpeed(-0.5);
+        launcherSub.setIndexSpeed(-0.6);
+        launcherSub.setIntakeSpeed(-0.4);
       }).withTimeout(2),
-      new WaitCommand(10),
+      new WaitCommand(15),
       new RunCommand(() -> {
         launcherSub.stopAll();
       })
