@@ -27,7 +27,10 @@ public class BasicShootAuto extends SequentialCommandGroup {
         launcherSub.setIndexSpeed(-0.5);
         launcherSub.setIntakeSpeed(-0.5);
       }).withTimeout(2),
-      new WaitCommand(10)
+      new WaitCommand(10),
+      new RunCommand(() -> {
+        launcherSub.stopAll();
+      })
     );
   }
 }

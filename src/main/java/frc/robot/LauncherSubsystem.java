@@ -62,6 +62,8 @@ public class LauncherSubsystem extends SubsystemBase {
 
   public void stopAll() {
     shooterMotor.stopMotor();
+    intakeMotor.stopMotor();
+    indexerMotor.stopMotor();
     // shooterMotor.configure(new SparkMaxConfig(), ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
   }
 
